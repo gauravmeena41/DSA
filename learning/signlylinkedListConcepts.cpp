@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 using namespace std;
 
 class Node
@@ -108,20 +109,79 @@ void print(Node *&head)
     cout << endl;
 }
 
+Node *floydsAlgo(Node *head)
+{
+    if (head == NULL)
+        return NULL;
+    Node *slow = head;
+    Node *fast = head;
+
+    while (slow != NULL && fast != NULL)
+    {
+        fast = fast->next;
+        if (fast != NULL)
+            fast = fast->next;
+        slow = slow->next;
+        if (slow == fast)
+            return slow;
+    }
+
+    return NULL;
+}
+
+Node *getStartingNode(Node *head)
+{
+    if (head == NULL)
+        return NULL;
+
+    Node *intersection = floydsAlgo(head);
+    Node *slow = head;
+
+    while (slow != intersection)
+    {
+        slow = slow->next;
+        intersection = intersection->next;
+    }
+
+    return slow;
+}
+
+void removeLoop(Node* head){
+    if(head==NULL) return;
+
+    Node*startLoop = getStartingNode(head);
+
+    Node*temp = startLoop;
+
+    while(temp->next != startLoop){
+        temp = temp->next;
+    }
+
+    temp->next = NULL;
+
+}
+
 int main()
 {
     Node *nodel = new Node(5);
     Node *head = nodel;
     Node *tail = nodel;
-    // InsertAtTail(tail, 12);
-    // InsertAtTail(tail, 15);
-    // InsertAtPosition(tail, head, 3, 13);
-    // InsertAtPosition(tail, head, 1, 4);
-    // InsertAtPosition(tail, head, 6, 17);
-    // InsertAtPosition(tail, head, 4, 19);
+    InsertAtTail(tail, 12);
+    InsertAtTail(tail, 15);
+    InsertAtPosition(tail, head, 3, 13);
+    InsertAtPosition(tail, head, 1, 4);
+    InsertAtPosition(tail, head, 6, 17);
+    InsertAtPosition(tail, head, 4, 19);
     // deleteNode(tail, head, 6);
     // print(head);
 
-    cout << checkCircular(head->next->next, head->next) << endl;
+    tail->next = head->next;
+
+    Node *loopstart = getStartingNode(head);
+
+    cout << "loopstart: " << loopstart->data << endl;
+
+    removeLoop(head);
+
     return 0;
 }
