@@ -77,6 +77,24 @@ void preOrderTraversal(Node *root)
     // cout << root->data << " ";
     // preOrderTraversal(root->left);
     // preOrderTraversal(root->right);
+
+    stack<Node *> s;
+    Node *currNode = root;
+
+    while (currNode != NULL || !s.empty())
+    {
+        while (currNode != NULL)
+        {
+            cout << currNode->data << " ";
+            s.push(currNode);
+            currNode = currNode->left;
+        }
+
+        currNode = s.top();
+        s.pop();
+
+        currNode = currNode->right;
+    }
 }
 
 void postOrderTraversal(Node *root)
@@ -86,6 +104,36 @@ void postOrderTraversal(Node *root)
     // postOrderTraversal(root->left);
     // postOrderTraversal(root->right);
     // cout << root->data << " ";
+
+    stack<Node *> s;
+    Node *currNode = root;
+
+    while (currNode != NULL || !s.empty())
+    {
+        if (currNode != NULL)
+        {
+            s.push(currNode);
+            currNode = currNode->left;
+        }
+        else
+        {
+            Node *temp = s.top()->right;
+            if (temp == NULL)
+            {
+                temp = s.top();
+                s.pop();
+                cout << temp->data << " ";
+                while (!s.empty() && temp == s.top()->right)
+                {
+                    temp = s.top();
+                    s.pop();
+                    cout << temp->data << " ";
+                }
+            }
+            else
+                currNode = temp;
+        }
+    }
 }
 
 int main()
@@ -95,7 +143,7 @@ int main()
 
     root = buildTree(root);
 
-    inOrderTraversal(root);
+    postOrderTraversal(root);
 
     return 0;
 }
