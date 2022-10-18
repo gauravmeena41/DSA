@@ -1,0 +1,1 @@
+{"name":"Local: binaryTree","url":"/workspaces/DSA/learning/binaryTree.cpp","tests":[{"id":1666033322048,"input":"5 7 13 -1 -1 14 -1 -1 10 17 18 12 2 -1 -1 1 -1 -1 -1 19 -1 -1 -1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/workspaces/DSA/learning/binaryTree.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: treeTraversals","url":"/workspaces/DSA/learning/treeTraversals.cpp","tests":[{"id":1666033731884,"input":"5 7 13 -1 -1 14 -1 -1 10 17 18 12 2 -1 -1 1 -1 -1 -1 19 -1 -1 -1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/workspaces/DSA/learning/treeTraversals.cpp","group":"local","local":true}
